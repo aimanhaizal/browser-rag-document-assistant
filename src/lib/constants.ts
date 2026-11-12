@@ -1,0 +1,12 @@
+export const APP_DB_NAME = 'localdoc-ai'
+export const APP_DB_VERSION = 1
+export const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2'
+export const GENERATION_MODEL = 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC'
+export const GENERATION_MODEL_REPO = 'mlc-ai/Qwen2.5-0.5B-Instruct-q4f16_1-MLC'
+export const MAX_FILE_BYTES = 25 * 1024 * 1024
+export const MAX_EXTRACTED_CHARS = 2_000_000
+export const CHUNK_WORDS = 180
+export const CHUNK_OVERLAP_WORDS = 30
+export const DEFAULT_TOP_K = 6
+export const MIN_RELEVANCE_SCORE = 0.22
+export const SUPPORTED_EXTENSIONS = ['pdf', 'docx', 'txt', 'md', 'markdown'] as const
