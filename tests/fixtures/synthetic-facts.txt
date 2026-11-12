@@ -1,0 +1,7 @@
+SYNTHETIC PROJECT BRIEF
+
+Project Cedar is a fictional browser research initiative. Its internal launch code name is Juniper Lantern. The team selected October 17, 2031 as the demonstration date.
+
+The project has three success criteria: all processing remains on the device, retrieved evidence is inspectable, and unsupported answers are declined. The designated project color is cobalt blue.
+
+This document contains invented information created solely for LocalDoc AI testing.
