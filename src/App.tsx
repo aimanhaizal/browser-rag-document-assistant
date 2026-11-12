@@ -80,7 +80,12 @@ export default function App() {
     }).catch((error) => setNotice(`Could not open browser storage: ${error.message}`))
   }, [])
 
-  useEffect(() => chatEnd.current?.scrollIntoView({ behavior: 'smooth' }), [messages])
+  useEffect(() => {
+    const target = chatEnd.current
+    if (typeof target?.scrollIntoView === 'function') {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages])
 
   const updateDocument = (document: StoredDocument) => {
     setDocuments((current) => [document, ...current.filter((item) => item.id !== document.id)])
@@ -184,7 +189,14 @@ export default function App() {
     try {
       setProgress({ label: 'Embedding your question locally', value: 0.15 })
       const [queryVector] = await embedTexts([prompt], (label, value) => setProgress({ label, value: value * 0.4 }))
-      const sources = retrieveChunks(chunks, queryVector)
+      if (!queryVector?.length) {
+        throw new Error('The local embedding model did not return a query vector. Reload the page and try again.')
+      }
+      const compatibleChunks = chunks.filter((chunk) => chunk.embedding?.length === queryVector.length)
+      if (!compatibleChunks.length) {
+        throw new Error('The stored document index is incomplete or incompatible. Remove and re-index the document, then try again.')
+      }
+      const sources = retrieveChunks(compatibleChunks, queryVector)
       assistantId = crypto.randomUUID()
       if (!sources.length || sources[0].score < MIN_RELEVANCE_SCORE) {
         setMessages((current) => [...current, {

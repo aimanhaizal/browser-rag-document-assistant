@@ -142,6 +142,11 @@ footer { display: flex; justify-content: space-between; align-items: center; gap
 .about-modal .fine-print { font: 10px/1.6 "Avenir Next", sans-serif; }
 .danger-button { margin-top: 10px; padding: 11px 15px; border: 1px solid var(--accent); background: transparent; color: #a13b26; font-size: 11px; font-weight: 750; }
 .danger-button:hover { background: var(--accent); color: white; }
+.error-fallback { max-width: 680px; margin: 12vh auto; padding: 38px; border: 1px solid var(--line); background: var(--panel); }
+.error-fallback h1 { margin: 10px 0; font: 500 36px/1.08 Georgia, serif; }
+.error-fallback p { color: var(--muted); line-height: 1.6; }
+.error-fallback details { margin: 20px 0; font-size: 11px; }
+.error-fallback code { display: block; margin-top: 10px; padding: 12px; overflow-wrap: anywhere; background: #eeeae1; }
 
 @keyframes pulse { from { opacity: .35; } to { opacity: 1; } }
 @media (max-width: 820px) {
