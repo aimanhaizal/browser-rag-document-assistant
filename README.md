@@ -2,6 +2,8 @@
 
 Private, browser-based retrieval-augmented generation for PDF, DOCX, TXT, and Markdown files. Documents, embeddings, retrieval, questions, and generation stay on the user’s device; only open model assets are downloaded.
 
+**Live application:** https://3rekfa77.mule.page/
+
 ## Features
 
 - Local PDF.js, Mammoth, and plain-text extraction
@@ -113,6 +115,19 @@ Browser validation should include:
 3. Ask “What is the observatory password phrase?” and verify the PDF page 1 passage contains “Silver Orchard.”
 4. On a WebGPU machine, allow the Qwen download and verify the streamed answer cites only displayed `SRC-*` identifiers.
 5. Remove one document, reload, and confirm it remains deleted; then use Clear All Data.
+
+### Validation record
+
+Verified on 2026-11-12:
+
+- TypeScript production build and five Vitest tests passed.
+- TXT, synthetic text-based PDF, and synthetic DOCX extraction completed in a real Chromium browser.
+- MiniLM downloaded and generated local embeddings; IndexedDB persisted the resulting chunks.
+- Semantic questions ranked the expected TXT and PDF passages first, with inspectable application-owned `SRC-1` cards.
+- Document removal and Clear All Data were exercised.
+- MuleRun Pages returned the application over HTTPS and served JavaScript, MJS, and WASM with compatible MIME types; deployed extraction, embedding, persistence, and retrieval passed.
+
+Local Qwen generation remains **unverified in the available test browser**. The browser exposed `navigator.gpu` but could not provide a GPU adapter, and the application correctly stopped with an explicit local-only error. Test streamed generation on a supported physical WebGPU device before claiming inference compatibility for that device.
 
 ## Independent deployment
 
